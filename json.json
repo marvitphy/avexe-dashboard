@@ -1,0 +1,9 @@
+[{
+    "segunda-feira": { "inicio": "08:00", "termino": "19:00" },
+    "terça-feira": { "inicio": "08:00", "termino": "19:00" },
+    "quarta-feira": { "inicio": "08:00", "termino": "19:00" },
+    "quinta-feira": { "inicio": "08:00", "termino": "19:00" },
+    "sexta-feira": { "inicio": "08:00", "termino": "19:00" },
+    "sábado-feira": { "inicio": "08:00", "termino": "12:00" },
+    "domingo-feira": { "inicio": "00:00", "termino": "00:00" }
+}]

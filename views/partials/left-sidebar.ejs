@@ -1,0 +1,90 @@
+<nav class="pcoded-navbar">
+    <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
+    <div class="pcoded-inner-navbar main-menu">
+        <div class="">
+            <div class="main-menu-header">
+                <img class="img-40 img-radius" src="http://static.righto.com/images/registergroups/honeywell-800-nim.jpg" alt="User-Profile-Image">
+                <div class="user-details">
+                    <span class="username"><%= user[0].nomeCompleto.split(" ")[0] %></span>
+                    <span id="more-details">Admin<i class="ti-angle-down"></i></span>
+                </div>
+            </div>
+
+            <div class="main-menu-content">
+                <ul>
+                    <li class="more-details">
+                        <a href="#"><i class="ti-user"></i>View Profile</a>
+                        <a href="#!"><i class="ti-settings"></i>Settings</a>
+                        <a href="auth-normal-sign-in.html"><i class="ti-layout-sidebar-left"></i>Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Gerenciar</div>
+        <ul class="pcoded-item pcoded-left-item">
+            <li style="cursor: pointer" class=" active dashboard" onclick="history.replaceState(null, null, ' ');">
+                <a>
+                    <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
+                    <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+
+        </ul>
+
+        <ul class="pcoded-item pcoded-left-item">
+
+            <li>
+                <a href="#/gerenciar-empresas">
+                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Gerenciar Empresas</span>
+                </a>
+            </li>
+            <li>
+                <a href="#/gerenciar-usuarios">
+                    <span class="pcoded-micon"><i class="icofont icofont-ui-user-group"></i><b>FC</b></span>
+                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Gerenciar Usuários</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="pcoded-item pcoded-left-item">
+            <li>
+                <a href="form-elements-component.html">
+                    <span class="pcoded-micon"><i class="icofont icofont-list"></i><b>FC</b></span>
+                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Gerenciar Catálogos</span>
+                </a>
+            </li>
+        </ul>
+        <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Relatórios</div>
+        <ul class="pcoded-item pcoded-left-item">
+            <li class="pcoded-hasmenu">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
+                    <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Relatórios</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+                <ul class="pcoded-submenu">
+                    <li class=" ">
+                        <a href="auth-normal-sign-in.html">
+                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Acessos</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+                    <li class=" ">
+                        <a href="auth-sign-up.html">
+                            <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Downloads</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+                    <li class=" ">
+                        <a href="sample-page.html">
+                            <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Reclamações</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>

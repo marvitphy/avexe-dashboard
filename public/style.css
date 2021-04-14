@@ -1,0 +1,14 @@
+@font-face {
+    font-family: avexe;
+    src: url('fonts/SamsungSans-Regular.ttf');
+}
+
+@font-face {
+    font-family: avexe-md;
+    src: url('fonts/SamsungSans-Medium.ttf');
+}
+
+@font-face {
+    font-family: avexe-b;
+    src: url('fonts/SamsungSans-Bold.ttf');
+}

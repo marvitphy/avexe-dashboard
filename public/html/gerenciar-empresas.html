@@ -1,0 +1,70 @@
+<div class="page-wrapper gerenciar">
+    <!-- Page-header start -->
+
+    <span class="btn btn-sm bg-c-pink voltar" style="display: none; border-radius: 20px; color: white; z-index: 1200; margin-bottom: 20px"><i class="fas fa-chevron-left"></i> Voltar</span>
+    <div class="page-header card header-empresa header-empresa-1" style="cursor: pointer">
+        <div class="row align-items-end">
+            <div class="col-lg-8">
+                <div class="page-header-title">
+                    <i class="icofont icofont-file-code bg-c-pink"></i>
+                    <div class="d-inline pt-3">
+                        <h4>Empresas Cadastradas</h4>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="page-header card header-empresa header-empresa-2" style="cursor: pointer">
+        <div class="row align-items-end">
+            <div class="col-lg-8">
+                <div class="page-header-title">
+                    <i class="icofont icofont-file-code bg-c-blue"></i>
+                    <div class="d-inline pt-3">
+                        <h4>Cadastrar Empresa</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+    var clicked = 0
+    $('.header-empresa-1').click(function() {
+        $('.header-empresa').hide();
+        $(this).show();
+        $('.voltar').show();
+        //$('.router').load('./html/cadastrar-empresas.html')
+    })
+    $('.header-empresa-2').click(function() {
+        clicked = clicked + 1;
+        if (clicked == 1) {
+            $('.header-empresa').hide();
+            $(this).show();
+            $('.voltar').show();
+            $('.router').remove()
+            $('.gerenciar').append('<div class="router"></div>')
+            $('.router').load('./html/cadastrar-empresas.html')
+        } else {
+
+        }
+
+        console.clear()
+        console.warn({
+            msg: 'Console Limpo'
+        })
+    })
+
+    $('.voltar').click(function() {
+        clicked = 0
+        $('.header-empresa').show()
+        $(this).hide();
+        $('.router').empty()
+        $('.router').remove()
+    })
+</script>
