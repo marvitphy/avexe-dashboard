@@ -13,7 +13,9 @@ var cookieSession = require('cookie-session');
 const app = require('express').Router();
 var moment = require('moment');
 //setando o datetime pra pt-br
-moment.locale('pt-br');
+moment.locale('pt-br');;
+const listEndpoints = require('express-list-endpoints')
+const fs = require('fs')
 
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
@@ -192,5 +194,7 @@ app.get('/getCidadesById/:id', async(req, res) => {
     let resultGetCidades = await consultasModel.getCidadesById(req.params.id);
     res.json(resultGetCidades)
 })
+
+
 
 module.exports = app
