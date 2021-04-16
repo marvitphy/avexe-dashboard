@@ -80,7 +80,7 @@ app.post('/api/login', async(req, res) => {
 
 
 app.get('/login', (req, res) => {
-    req.session.email == null ? res.render('login') : res.redirect('/')
+    req.session.email == null ? res.render('Login') : res.redirect('/')
 
 })
 app.get('/cadastro', (req, res) => {
