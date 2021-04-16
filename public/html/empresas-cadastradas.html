@@ -1,0 +1,146 @@
+<div class="page-body">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card p-4 tabela-receiver">
+                <table class="tabela-getEmpresas table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody class="result-getEmpresas">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade modal-editar" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar Empresa</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <form>
+                        <div class="text-center mt-0 w-100 mb-5 font-weght-bold logo-empresa" style="cursor: pointer">
+                            <div class="" style="margin: 0 auto; border-radius: 50%; width: 100px; height: 100px; background-image: url('https://designshack.net/wp-content/uploads/placeholder-image.png'); background-size: cover; background-position: center center;"></div>
+                            Logo da Empresa
+                        </div>
+
+                        <input type="file" class="arquivo-logo" accept=".jpg, .jpeg, .png" style="display:none">
+                        <div class="row">
+                            <div class="col">
+                                <label for="formGroupExampleInput">Nome da Empresa</label>
+                                <input type="text" class="form-control nome" placeholder="Nome da Empresa">
+                            </div>
+                            <div class="col">
+                                <label for="formGroupExampleInput">Categorias <small class="text-muted">Separe cada categoria por vígulas</small> </label>
+
+                                <input type="text" class="form-control categorias">
+
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col">
+                                <label for="">Sobre a Empresa</label>
+                                <textarea class="form-control sobre" name="" id="" cols="" rows="5"></textarea>
+                            </div>
+                            <div class="col">
+                                <label for=""><i class="fas fa-phone"></i> Telefone</label>
+                                <input type="text" class="form-control telefone">
+                                <label for=""><i class="fab fa-whatsapp"></i> Whatsapp</label>
+                                <input type="text" class="form-control whatsapp">
+                            </div>
+                        </div>
+                        <hr>
+                        <span for="endereco-input" class="">Endereço</span>
+                        <hr class="mt-3">
+                        <div class="row ">
+                            <div class="col">
+                                <label for="">Cidade</label>
+                                <input class="cidade-input form-control" type="text" size="50">
+                                <div class="cidades-lista" style="cursor: pointer; -webkit-box-shadow: 4px 28px 51px -15px rgba(114, 114, 114, 0.75);
+                                -moz-box-shadow: 4px 28px 51px -15px rgba(110, 110, 110, 0.75);
+                                box-shadow: 4px 28px 51px -15px rgba(88, 88, 88, 0.75); position: absolute; z-index: 1500; height: auto; background: #fff">
+                                    <div class="cidades-lista list-group">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label for="">Estado</label>
+                                <input class="form-control estado" disabled type="text" size="50">
+                            </div>
+                            <div class="col">
+                                <label for="">Cep</label>
+                                <input class="form-control cep" type="text" size="50">
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col">
+                                <label for="">Rua</label>
+                                <input id="searchTextField" placeholder="Digite o nome da Rua" class="rua form-control" type="text" size="50">
+                            </div>
+                            <div class="col">
+                                <label for="">Bairro</label>
+                                <input class="bairro form-control" type="text" size="50">
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col">
+                                <label for="">Número</label>
+                                <input class="form-control numero" type="text" size="50">
+                            </div>
+                            <div class="col">
+                                <label for="">Complemento</label>
+                                <input class="form-control complemento" type="text" size="50">
+                            </div>
+                        </div>
+                        <hr class="mb-0">
+                        <div class="row">
+
+                            <div class="col">
+                                <div data-toggle="modal" data-target="#horarios" class=" btn btn-dark rounded mt-3 btn-block"><i class="far fa-clock"></i> Horários de Funcionamento</div>
+                            </div>
+
+                        </div>
+                        <hr class="mb-0 mt-3">
+                        <div class="row">
+                            <div class="col">
+                                <label for=""> <i class="fab fa-instagram" aria-hidden="true"></i> Instagram</label>
+                                <input class="form-control instagram" type="text" size="50">
+                            </div>
+                            <div class="col">
+                                <label for=""> <i class="fab fa-facebook" aria-hidden="true"></i> Facebook</label>
+                                <input class="form-control facebook" type="text" size="50">
+                            </div>
+                            <div class="col">
+                                <label for=""> <i class="fa fa-exclamation-circle" aria-hidden="true"></i> Email</label>
+                                <input class="form-control email" type="text" size="50">
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary">Salvar Edição</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/getEmpresas.js"></script>

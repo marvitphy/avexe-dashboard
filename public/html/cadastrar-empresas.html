@@ -15,10 +15,19 @@
                 <div class="card-block">
 
                     <form>
-                        <div class="text-center mt-0 w-100 mb-5 font-weght-bold logo-empresa" style="cursor: pointer">
-                            <div class="" style="margin: 0 auto; border-radius: 50%; width: 100px; height: 100px; background-image: url('https://designshack.net/wp-content/uploads/placeholder-image.png'); background-size: cover; background-position: center center;"></div>
-                            Logo da Empresa
+
+                        <div class="pt-2 mb-4 imagens" style="border-radius: 15px; height: 220px; background-image: url('https://www.wallpapertip.com/wmimgs/4-45448_mac-abstract-wallpaper-white.jpg'); background-size: cover; background-position: 50% 50%; background-repeat: no-repeat">
+                            <span class="btn btn-dark rounded btn-sm ml-3 mt-2 float-left mudar-capa" style="position: absolute">Capa da Empresa</span>
+                            <div class="text-dark text-center w-100 mb-5 font-weght-bold " style="  margin-top: 40px;">
+                                <div class="logo-empresa shadow shadow-lg" style="cursor: pointer; -webkit-box-shadow: 0px 3px 46px -2px rgba(0,0,0,0.72); 
+                                box-shadow: 0px 3px 46px -2px rgba(0,0,0,0.72); border: 3px solid white; margin: 0 auto; border-radius: 50%; width: 120px; height: 120px; position: relative; overflow: hidden;
+                            border-radius: 50%;">
+                                    <img src="./images/placeholder2.jpg" style=" width: 100%;
+                                height: 100%; " alt="">
+                                </div>
+                            </div>
                         </div>
+                        <input type="file" name="" class="capa d-none" id="">
 
                         <input type="file" class="arquivo-logo" accept=".jpg, .jpeg, .png" style="display:none">
                         <div class="row">
@@ -28,8 +37,10 @@
                             </div>
                             <div class="col">
                                 <label for="formGroupExampleInput">Categorias <small class="text-muted">Separe cada categoria por vígulas</small> </label>
-
-                                <input type="text" class="form-control categorias">
+                                <div class="inputholder pl-2" style="border-radius: 3px; 
+                                border:1px solid rgb(204, 204, 204); padding:0px;">
+                                    <input style="border:0; display:inline-block; padding:5px;" type="text" class="categorias">
+                                </div>
                             </div>
                         </div>
 
@@ -113,6 +124,7 @@
                             </div>
                         </div>
 
+                        <div class="float-right mt-3 btn rounded text-light salvando" style="display: none; background: rgb(13, 59, 121);"><i class="fas fa-clock"></i> Salvando Empresa</div>
                         <div class="salvar-empresa btn rounded mt-3 float-right text-light" style="background-color: rgb(37, 117, 13);"><i class="fas fa-check-square"></i> Salvar</div>
                     </form>
 

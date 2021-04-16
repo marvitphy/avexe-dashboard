@@ -1,14 +1,15 @@
 <div class="page-wrapper gerenciar">
     <!-- Page-header start -->
 
-    <span class="btn btn-sm bg-c-pink voltar" style="display: none; border-radius: 20px; color: white; z-index: 1200; margin-bottom: 20px"><i class="fas fa-chevron-left"></i> Voltar</span>
-    <div class="page-header card header-empresa header-empresa-1" style="cursor: pointer">
+    <span class="btn btn-sm bg-c-pink voltar" style="display: none; border-radius: 20px; color: white; z-index: 1200; margin-bottom: 20px; "><i class="fas fa-chevron-left"></i> Voltar</span>
+    <div class="pl-4 pt-3 card header-empresa header-empresa-1" style="padding-bottom: 24px; cursor: pointer">
         <div class="row align-items-end">
             <div class="col-lg-8">
                 <div class="page-header-title">
                     <i class="icofont icofont-file-code bg-c-pink"></i>
                     <div class="d-inline pt-3">
-                        <h4>Empresas Cadastradas</h4>
+
+                        <h4> <span class="badge badge-dark badge-pill text-white qtd-empresas"></span> Empresas Cadastradas</h4>
 
 
                     </div>
@@ -17,7 +18,7 @@
         </div>
 
     </div>
-    <div class="page-header card header-empresa header-empresa-2" style="cursor: pointer">
+    <div class="pl-4 pt-3 card header-empresa header-empresa-2" style=" padding-bottom: 22px; cursor: pointer">
         <div class="row align-items-end">
             <div class="col-lg-8">
                 <div class="page-header-title">
@@ -36,10 +37,23 @@
 <script>
     var clicked = 0
     $('.header-empresa-1').click(function() {
-        $('.header-empresa').hide();
-        $(this).show();
-        $('.voltar').show();
-        //$('.router').load('./html/cadastrar-empresas.html')
+        clicked = clicked + 1;
+        if (clicked == 1) {
+            $('.header-empresa').hide();
+            $(this).show();
+            $('.voltar').show();
+            $('.router').remove()
+            $('.gerenciar').append('<div class="router"></div>');
+            $('.router')
+            $('.router').load('./html/empresas-cadastradas.html')
+        } else {
+
+        }
+
+        console.clear()
+        console.warn({
+            msg: 'Console Limpo'
+        })
     })
     $('.header-empresa-2').click(function() {
         clicked = clicked + 1;
@@ -67,4 +81,10 @@
         $('.router').empty()
         $('.router').remove()
     })
+
+    axios.get('./api/getEmpresas')
+        .then(res => {
+            $('.qtd-empresas').html('')
+            $('.qtd-empresas').html(res.data.length)
+        })
 </script>

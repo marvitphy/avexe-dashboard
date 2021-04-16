@@ -8,6 +8,19 @@ function getResultsCat(str) {
         .catch(err => err)
 }
 
+
+function getEmpresas() {
+    return knex('empresas').select('id', 'nome', 'status').orderBy('id', 'desc')
+        .then(result => result)
+        .catch(err => err)
+}
+
+function getEmpresaById(id) {
+    return knex('empresas').select().where('id', '=', id)
+        .then(result => result)
+        .catch(err => err)
+}
+
 function getResultsNome(str) {
     return knex('empresas').select().where('nome', 'like', `%${str}%`)
         .orderBy('id', 'desc')
@@ -33,5 +46,7 @@ module.exports = {
     getResultsCat,
     getResultsNome,
     getCidades,
-    getCidadesById
+    getCidadesById,
+    getEmpresas,
+    getEmpresaById
 }

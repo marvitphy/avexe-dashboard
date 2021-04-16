@@ -67,19 +67,74 @@ $('.cidade-input').on('input', function() {
 
 $('.logo-empresa').on('click', function() {
     $('.arquivo-logo').click()
+
 })
+$('.mudar-capa').on('click', function() {
+    $('.capa').click()
+})
+
 var fileSelector = $('.arquivo-logo')
 var fileList
+var fileSelectorCapa = $('.capa')
+var fileListCapa
+
 fileSelector.on('change', (event) => {
     fileList = event.target.files;
-
+    $('.logo-empresa > img').attr('src', URL.createObjectURL(event.target.files[0]))
 });
 
+fileSelectorCapa.on('change', (event) => {
+    var reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0])
+    fileListCapa = event.target.files;
+    reader.onload = () => {
+        $('.imagens').css({
+            'background-image': `url(${reader.result})`
+        })
+        console.log(reader.result)
+    };
+    reader.onerror = error => reject(error);
+});
+
+$('.inputholder').click(function() {
+    $('.categorias').focus();
+})
+
+
+var categoriasArrayPreFinal
+var categoriasArrayFinal
+
+$('.categorias').on('input', function(e) {
+    var categoriasInput = $('.categorias').val()
+    if (categoriasInput.includes(',')) {
+        var categoriasArray = categoriasInput.split(',')
+        var categoriasFiltro = categoriasArray.filter(function(el) {
+            return el != '';
+        });
+
+        for (i in categoriasFiltro) {
+            $('.categorias').before(`<span style="cursor: pointer; user-select: none" class="badge mr-1 badge-pill badge-dark cat">${categoriasFiltro[i]}</span>`)
+            $('.categorias').val('')
+        }
+
+        $('.cat').on('click', function() {
+            $(this).remove();
+        })
+    }
+})
 $('.salvar-empresa').on('click', function() {
+    let salvar = $(this);
+    salvar.hide();
+    $('.salvando').show();
+    categoriasArrayPreFinal = document.querySelectorAll(".cat")
+    categoriasArrayFinal = Array.prototype.map.call(categoriasArrayPreFinal, function(element) {
+        return element.innerText;
+    });
+
     var nome = $('.nome').val()
-    var categorias = $('.categorias').val()
+    var categorias = JSON.stringify(categoriasArrayFinal).replace(/[\[\]']+/g, '').replace(/"/g, '').replace(/,/g, ', ')
     var descricao = $('.sobre').val()
-    var telefone = $('.telefone').val()
+    var contato = $('.telefone').val()
     var whatsapp = $('.whatsapp').val()
     var cidade = $('.cidade-input').val()
     var estado = $('.estado').val()
@@ -90,13 +145,13 @@ $('.salvar-empresa').on('click', function() {
     var instagram = $('.instagram').val()
     var facebook = $('.facebook').val()
     var email = $('.email').val()
-
     var formData = new FormData()
     formData.append('image', fileList[0])
+    formData.append('capa', fileListCapa[0])
     formData.append('nome', nome)
     formData.append('categorias', categorias)
     formData.append('descricao', descricao)
-    formData.append('telefone', telefone)
+    formData.append('contato', contato)
     formData.append('whatsapp', whatsapp)
     formData.append('cidade', cidade)
     formData.append('estado', estado)
@@ -119,6 +174,9 @@ $('.salvar-empresa').on('click', function() {
                 icon: 'success',
                 title: 'Empresa cadastrada com sucesso!'
             })
+
+            salvar.show()
+            $('.salvando').hide()
         }
     });
 

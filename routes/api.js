@@ -105,34 +105,48 @@ const storage = multer.memoryStorage({
     }
 })
 
-const upload = multer({ storage }).single('image')
+const upload = multer({ storage }).fields([{ name: 'image', maxCount: 1 }, { name: 'capa', maxCount: 1 }])
 
 app.post('/api/uploadImgEmpresa', upload, async(req, res) => {
     console.log(req.body)
     let unique = short.generate()
+    let capaId = short.generate()
 
-    let file = req.file.originalname.split('.')
+    let file = req.files.image[0].originalname.split('.')
     const fileType = file[file.length - 1];
     let logo = `${unique}.${fileType}`
     const params = {
         Bucket: process.env.AWS_BUCKET_NAME,
         Key: `${unique}.${fileType}`,
-        Body: req.file.buffer,
+        Body: req.files.image[0].buffer,
         ACL: 'public-read'
     }
 
-    // res.json(req.body)
+    let fileCapa = req.files.capa[0].originalname.split('.')
+    const fileTypeCapa = fileCapa[fileCapa.length - 1];
+    let capa = `${capaId}.${fileTypeCapa}`
+    const params2 = {
+        Bucket: process.env.AWS_BUCKET_NAME,
+        Key: `${capaId}.${fileTypeCapa}`,
+        Body: req.files.capa[0].buffer,
+        ACL: 'public-read'
+    }
 
-    let result = await empresasModel.cadEmpresa(req.body.nome, req.body.descricao, req.body.rua, req.body.bairro, req.body.complemento, req.body.contato, req.body.instagram, req.body.facebook, req.body.email, req.body.whatsapp, req.body.categorias, logo, req.body.horarios, req.body.cidade, req.body.estado, req.body.cep)
-
+    let result = await empresasModel.cadEmpresa(req.body.nome, req.body.descricao, req.body.rua, req.body.bairro, req.body.complemento, req.body.contato, req.body.instagram, req.body.facebook, req.body.email, req.body.whatsapp, req.body.categorias, logo, capa, req.body.horarios, req.body.cidade, req.body.estado, req.body.cep, req.body.numero)
 
     s3.upload(params, (error, data) => {
         if (error) {
             console.log(error)
+        } else {}
+    })
+
+    s3.upload(params2, (error, data) => {
+        if (error) {
+            console.log(error)
         }
         res.json({ status: 1, msg: 'Empresa Cadastrada' })
-        console.log(data)
     })
+
 
 })
 
@@ -146,6 +160,26 @@ app.get('/empresas/:str', async(req, res) => {
         tipo: 'Por Nome',
         resultados: resultNome
     }])
+})
+
+app.get('/api/getEmpresas', async(req, res) => {
+
+    let result = await consultasModel.getEmpresas();
+    res.json(result)
+
+})
+app.get('/api/getEmpresaById/:id', async(req, res) => {
+
+    let result = await consultasModel.getEmpresaById(req.params.id);
+    res.json(result)
+
+})
+app.post('/api/updateStatus', async(req, res) => {
+    let status = req.body.status
+    let id = req.body.id
+    let result = await empresasModel.updateStatus(id, status);
+    res.json(result)
+
 })
 
 app.get('/getCidades/:str', async(req, res) => {
