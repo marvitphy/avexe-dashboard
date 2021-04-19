@@ -13,7 +13,21 @@ function updateStatus(id, status) {
         .catch(err => err)
 }
 
+function editarEmpresa(id, obj) {
+    return knex('empresas').where('id', '=', id).update({...obj })
+        .then(result => result)
+        .catch(err => err)
+}
+
+function removerEmpresa(id) {
+    return knex('empresas').where('id', '=', id).update({ deleted: 1 })
+        .then(result => result)
+        .catch(err => err)
+}
+
 module.exports = {
     cadEmpresa,
-    updateStatus
+    updateStatus,
+    removerEmpresa,
+    editarEmpresa
 }

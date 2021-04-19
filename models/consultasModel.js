@@ -10,7 +10,7 @@ function getResultsCat(str) {
 
 
 function getEmpresas() {
-    return knex('empresas').select('id', 'nome', 'status').orderBy('id', 'desc')
+    return knex('empresas').select('id', 'nome', 'status').where('deleted', '=', 0).orderBy('id', 'desc')
         .then(result => result)
         .catch(err => err)
 }

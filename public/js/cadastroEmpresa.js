@@ -145,6 +145,7 @@ $('.salvar-empresa').on('click', function() {
     var instagram = $('.instagram').val()
     var facebook = $('.facebook').val()
     var email = $('.email').val()
+    var numero = $('.numero').val()
     var formData = new FormData()
     formData.append('image', fileList[0])
     formData.append('capa', fileListCapa[0])
@@ -158,12 +159,12 @@ $('.salvar-empresa').on('click', function() {
     formData.append('cep', cep)
     formData.append('rua', rua)
     formData.append('bairro', bairro)
+    formData.append('numero', numero)
     formData.append('complemento', complemento)
     formData.append('instagram', instagram)
     formData.append('facebook', facebook)
     formData.append('email', email)
     formData.append('horarios', horarios)
-        //console.log(formData)
     axios.post('./api/uploadImgEmpresa', formData, {
         headers: {
             "Content-Type": `multipart/form-data; boundary=${formData._boundary}`,

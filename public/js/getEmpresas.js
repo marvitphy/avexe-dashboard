@@ -34,8 +34,33 @@ var changeStatus = function(id, nome, status) {
 }
 
 
+var removerEmpresa = function(id, nome) {
+    var nomeEmpresa = nome
+    var id = id
+    Swal.fire({
+        title: `Remover a empresa ${nomeEmpresa} ?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: `Sim, remover empresa!`,
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            axios.post('./api/removerEmpresa', {
+                id
+            }).then(res => {
+                reloadAll()
+            })
+
+        }
+    })
+}
+
+var idEmpresa
 editarEmpresa = (id) => {
     var id = id
+    idEmpresa = id
     axios.get(`./api/getEmpresaById/${id}`)
         .then(res => {
 
@@ -81,7 +106,7 @@ axios.get(`./api/getEmpresas`)
                             <th scope="row">${res.data[i].id}</th>
                             <td>${res.data[i].nome}</td>
                             <td>${status} </td>
-                            <td><i class="fas fa-pen" onclick="editarEmpresa(${res.data[i].id})" data-toggle="modal" data-target=".modal-editar"></i>&nbsp;-&nbsp;<i class="fas fa-trash"></i></td>
+                            <td><i class="fas fa-pen" onclick="editarEmpresa(${res.data[i].id})" data-toggle="modal" data-target=".modal-editar"></i>&nbsp;-&nbsp;<i onclick="removerEmpresa(${res.data[i].id}, '${res.data[i].nome}')" class="fas fa-trash"></i></td>
                         </tr>`)
         }
 
@@ -96,9 +121,56 @@ axios.get(`./api/getEmpresas`)
                 "search": "Pesquisar _INPUT_"
             },
             "order": [0, 'desc'],
-            "pagingType": "numbers"
+            "pagingType": "numbers",
+            responsive: true
 
         });
 
 
     })
+
+
+$('.salvar-edicao').click(function() {
+
+    var dadosEdicao = $('#formEditar').serializeArray()
+    var dados
+
+
+    var teste = $('#formEditar').find('input').each(function() {
+        if ($(this).attr('type') == 'file') {
+
+        } else {
+            var name = $(this).attr('name')
+            var val = $(this).val()
+            dados += `"${name}":"${val}" ,`
+        }
+
+    })
+
+    function remove_character(str, char_pos) {
+        part1 = str.substring(0, char_pos);
+        part2 = str.substring(char_pos + 1, str.length);
+        return (part1 + part2);
+    }
+
+
+    dados = `[{"descricao":"${$('textarea').val()}","id":${idEmpresa},${dados.replace('undefined', '')}}]`
+    dados = remove_character(dados, dados.length - 3)
+    dados = JSON.parse(dados)
+    console.log(dados)
+    axios.post('./api/editarEmpresa', {
+            dados
+        })
+        .then(res => {
+            var nome = res.data.nome
+            $('.fechar-modal').click()
+            Swal.fire({
+                icon: 'success',
+                title: 'Edição Salva!',
+                html: `<b>${nome}</b> editado(a) com sucesso!`,
+                onClose: reloadAll
+            })
+        })
+        .catch(err => console.log(err))
+
+})

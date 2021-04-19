@@ -32,7 +32,7 @@
             </div>
             <div class="modal-body">
                 <div class="text-center">
-                    <form>
+                    <form id="formEditar">
                         <div class="text-center mt-0 w-100 mb-5 font-weght-bold logo-empresa" style="cursor: pointer">
                             <div class="" style="margin: 0 auto; border-radius: 50%; width: 100px; height: 100px; background-image: url('https://designshack.net/wp-content/uploads/placeholder-image.png'); background-size: cover; background-position: center center;"></div>
                             Logo da Empresa
@@ -42,12 +42,12 @@
                         <div class="row">
                             <div class="col">
                                 <label for="formGroupExampleInput">Nome da Empresa</label>
-                                <input type="text" class="form-control nome" placeholder="Nome da Empresa">
+                                <input type="text" class="form-control nome" name="nome" placeholder="Nome da Empresa">
                             </div>
                             <div class="col">
                                 <label for="formGroupExampleInput">Categorias <small class="text-muted">Separe cada categoria por vígulas</small> </label>
 
-                                <input type="text" class="form-control categorias">
+                                <input name="categorias" type="text" class="form-control categorias">
 
                             </div>
                         </div>
@@ -55,13 +55,13 @@
                         <div class="row mt-3">
                             <div class="col">
                                 <label for="">Sobre a Empresa</label>
-                                <textarea class="form-control sobre" name="" id="" cols="" rows="5"></textarea>
+                                <textarea name="descricao" class="form-control sobre" name="" id="" cols="" rows="5"></textarea>
                             </div>
                             <div class="col">
                                 <label for=""><i class="fas fa-phone"></i> Telefone</label>
-                                <input type="text" class="form-control telefone">
+                                <input name="contato" type="text" class="form-control telefone">
                                 <label for=""><i class="fab fa-whatsapp"></i> Whatsapp</label>
-                                <input type="text" class="form-control whatsapp">
+                                <input name="whatsapp" type="text" class="form-control whatsapp">
                             </div>
                         </div>
                         <hr>
@@ -70,7 +70,7 @@
                         <div class="row ">
                             <div class="col">
                                 <label for="">Cidade</label>
-                                <input class="cidade-input form-control" type="text" size="50">
+                                <input name="cidade" class="cidade-input form-control" type="text" size="50">
                                 <div class="cidades-lista" style="cursor: pointer; -webkit-box-shadow: 4px 28px 51px -15px rgba(114, 114, 114, 0.75);
                                 -moz-box-shadow: 4px 28px 51px -15px rgba(110, 110, 110, 0.75);
                                 box-shadow: 4px 28px 51px -15px rgba(88, 88, 88, 0.75); position: absolute; z-index: 1500; height: auto; background: #fff">
@@ -81,31 +81,31 @@
                             </div>
                             <div class="col">
                                 <label for="">Estado</label>
-                                <input class="form-control estado" disabled type="text" size="50">
+                                <input name="estado" class="form-control estado" type="text" size="50">
                             </div>
                             <div class="col">
                                 <label for="">Cep</label>
-                                <input class="form-control cep" type="text" size="50">
+                                <input name="cep" class="form-control cep" type="text" size="50">
                             </div>
                         </div>
                         <div class="row mt-2">
                             <div class="col">
                                 <label for="">Rua</label>
-                                <input id="searchTextField" placeholder="Digite o nome da Rua" class="rua form-control" type="text" size="50">
+                                <input name="rua" id="searchTextField" placeholder="Digite o nome da Rua" class="rua form-control" type="text" size="50">
                             </div>
                             <div class="col">
                                 <label for="">Bairro</label>
-                                <input class="bairro form-control" type="text" size="50">
+                                <input name="bairro" class="bairro form-control" type="text" size="50">
                             </div>
                         </div>
                         <div class="row mt-2">
                             <div class="col">
                                 <label for="">Número</label>
-                                <input class="form-control numero" type="text" size="50">
+                                <input name="numero" class="form-control numero" type="text" size="50">
                             </div>
                             <div class="col">
                                 <label for="">Complemento</label>
-                                <input class="form-control complemento" type="text" size="50">
+                                <input name="complemento" class="form-control complemento" type="text" size="50">
                             </div>
                         </div>
                         <hr class="mb-0">
@@ -120,15 +120,15 @@
                         <div class="row">
                             <div class="col">
                                 <label for=""> <i class="fab fa-instagram" aria-hidden="true"></i> Instagram</label>
-                                <input class="form-control instagram" type="text" size="50">
+                                <input name="instagram" class="form-control instagram" type="text" size="50">
                             </div>
                             <div class="col">
                                 <label for=""> <i class="fab fa-facebook" aria-hidden="true"></i> Facebook</label>
-                                <input class="form-control facebook" type="text" size="50">
+                                <input name="facebook" class="form-control facebook" type="text" size="50">
                             </div>
                             <div class="col">
                                 <label for=""> <i class="fa fa-exclamation-circle" aria-hidden="true"></i> Email</label>
-                                <input class="form-control email" type="text" size="50">
+                                <input name="email" class="form-control email" type="text" size="50">
                             </div>
                         </div>
 
@@ -136,8 +136,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                <button type="button" class="btn btn-primary">Salvar Edição</button>
+                <button type="button" class="btn btn-secondary fechar-modal" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary salvar-edicao">Salvar Edição</button>
             </div>
         </div>
     </div>

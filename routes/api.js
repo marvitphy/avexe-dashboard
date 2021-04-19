@@ -114,6 +114,7 @@ app.post('/api/uploadImgEmpresa', upload, async(req, res) => {
     let unique = short.generate()
     let capaId = short.generate()
 
+    //IMAGE LOGO INFORMATION TO UPLOAD
     let file = req.files.image[0].originalname.split('.')
     const fileType = file[file.length - 1];
     let logo = `${unique}.${fileType}`
@@ -124,6 +125,7 @@ app.post('/api/uploadImgEmpresa', upload, async(req, res) => {
         ACL: 'public-read'
     }
 
+    //IMAGE BANNER INFORMATION TO UPLOAD
     let fileCapa = req.files.capa[0].originalname.split('.')
     const fileTypeCapa = fileCapa[fileCapa.length - 1];
     let capa = `${capaId}.${fileTypeCapa}`
@@ -137,15 +139,12 @@ app.post('/api/uploadImgEmpresa', upload, async(req, res) => {
     let result = await empresasModel.cadEmpresa(req.body.nome, req.body.descricao, req.body.rua, req.body.bairro, req.body.complemento, req.body.contato, req.body.instagram, req.body.facebook, req.body.email, req.body.whatsapp, req.body.categorias, logo, capa, req.body.horarios, req.body.cidade, req.body.estado, req.body.cep, req.body.numero)
 
     s3.upload(params, (error, data) => {
-        if (error) {
-            console.log(error)
-        } else {}
+        if (error) return console.log(error)
     })
 
     s3.upload(params2, (error, data) => {
-        if (error) {
-            console.log(error)
-        }
+        if (error) return console.log(error)
+
         res.json({ status: 1, msg: 'Empresa Cadastrada' })
     })
 
@@ -165,11 +164,24 @@ app.get('/empresas/:str', async(req, res) => {
 })
 
 app.get('/api/getEmpresas', async(req, res) => {
-
     let result = await consultasModel.getEmpresas();
     res.json(result)
+})
+
+app.post('/api/removerEmpresa', async(req, res) => {
+    let result = await empresasModel.removerEmpresa(req.body.id);
+    res.json(result)
+})
+app.post('/api/editarEmpresa', async(req, res) => {
+
+    let id = req.body.dados[0].id
+    let nome = req.body.dados[0].nome
+    delete req.body.dados[0].id
+    let result = await empresasModel.editarEmpresa(id, req.body.dados[0]);
+    res.json({ status: 1, nome })
 
 })
+
 app.get('/api/getEmpresaById/:id', async(req, res) => {
 
     let result = await consultasModel.getEmpresaById(req.params.id);
